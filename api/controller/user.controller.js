@@ -5,6 +5,7 @@ let StickerAlbum = require("../../database/sticker.album.model");
 // User Register
 
 exports.user_info = (req, res) => {
+
   // Validate request
   let _id = req.body._id;
   if (!req.body) {
@@ -35,7 +36,7 @@ exports.get_sticker_type = (req, res) => {
       });
     }
     else {
-      res.send(docs);
+      res.send({"status" : true, "sticker_type" : docs});
     }
   });
 };
@@ -60,7 +61,7 @@ exports.get_album_data = (req, res) => {
       });
     }
     else {
-      res.send(docs);
+      res.send({"status" : true, "album_data" : docs});
     }
   });
 };

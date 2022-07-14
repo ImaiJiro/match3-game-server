@@ -1,16 +1,16 @@
-var User = require('./../../database/user.model');
+
 const db = require("./../../connection/mongooconnection");
 const booster = require('../../config/booster.config');
 const perks = require('../../config/perks.config');
-const Daily = require("./../../database/daily.model");
-const moment = require('moment');
+const User = require('./../../database/user.model');
+// const Daily = require("./../../database/daily.model");
+// const moment = require('moment');
 
 async function insertOne(params) {
     try {
         let resData;
         const { UserId, IsSocial } = params;
         const find = await User.findOne({ UserId: UserId });
-        
         // let eventDetails = find.EventDetails; // await Daily.find({ IsSelect: true });
         // let date = moment(eventDetails[0].EndDate).format();
         // let diffrence = Math.abs(moment().diff(date, 'minutes'));
@@ -22,7 +22,7 @@ async function insertOne(params) {
         // delete find.EventDetails;
         // console.log(eventDetails)
         if (!!find) {
-            find.EventDetails = find.EventDetails.sort((a,b)=> a.UnlockValue - b.UnlockValue)
+            find.EventDetails = find.EventDetails.sort((a, b) => a.UnlockValue - b.UnlockValue)
             if (!IsSocial && !(find.IsSocial)) {
                 const { Password } = params;
                 if (Password === find.Password) {
@@ -30,7 +30,7 @@ async function insertOne(params) {
                         "status": true,
                         "msg": "Successfully Login.",
                         "user": find,
-                        
+
                         // {
                         //     find,
                         //     ...find.EventDetails.sort((a,b)=> a.UnlockValue - b.UnlockValue)
@@ -95,6 +95,7 @@ async function insertOne(params) {
             console.log(perks)
             params.Country = params.Country.toUpperCase();
             const getUserList = await User.findOne({}, { EventDetails: 1 });
+            console.log(getUserList)
             params.EventDetails = getUserList.EventDetails.sort((a, b) => a.UnlockValue - b.UnlockValue);
             let insertUser = new User(params);
             insertUser = await insertUser.save();

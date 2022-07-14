@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 // https://stackoverflow.com/questions/62396498/tslint-marks-body-parser-as-deprecated
 // parse application/json
 app.use(express.json());
+app.use('/', require("./../api/index_api"));
 // app.use(cors());
 // app.use(compression());
 // Middleware

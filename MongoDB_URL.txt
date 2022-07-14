@@ -1,0 +1,1 @@
+mongodb+srv://AliEnezy:Aa66946760@alienezy.2ekym1e.mongodb.net/?retryWrites=true&w=majority

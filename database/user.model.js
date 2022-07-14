@@ -26,10 +26,25 @@ var userSchema = new Schema({
         counter: { type: Number },
         perk_id: { type: Number }
     }],
-    EventDetails: { type: Schema.Types.Mixed },
+    EventDetails: [{ 
+        "Name" : { type: String },
+        "IsLock" : { type: Boolean },
+        "Counter" : { type: Number },
+        "Id" : { type: Number },
+        "IsSelect" : { type: Boolean },
+        "Type" : { type: String },
+        "EndDate" : { type: Date },
+        "CurrentDay" : { type: Number },
+        "UnlockValue" : { type: Number }
+     }],
     Light: { type: Number, default: 0 },
+    diamonds : { type: String },
+    gold : { type: String },
+    silver : { type: String },
+    white : { type: String },
+    album_level : { type: Number },
     
     EndDate: { type: Date },
 }, { strict: false, versionKey: false });
-var User = mongoose.model('USER', userSchema);
+var User = mongoose.model('USER', userSchema, 'users');
 module.exports = User;
